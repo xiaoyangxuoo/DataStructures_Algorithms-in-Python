@@ -1,6 +1,6 @@
 def swap_nodes(self, key_1, key_2):
 
-  if key_1 == key_2:
+  if key_1 == key_2: #check if they are the same element
     return 
 
   prev_1 = None 
