@@ -1,4 +1,4 @@
-class Node:
+class Node:###design the Node class to initialize the node for each data to be updated
     def __init__(self, data):
         self.data = data
         self.next = None
@@ -6,7 +6,7 @@ class Node:
 
 class LinkedList:
     def __init__(self):
-        self.head = None
+        self.head = None # initialize the node head with Null to make it default
 
     def print_list(self):
         cur_node = self.head
@@ -17,7 +17,7 @@ class LinkedList:
     def append(self, data):
         new_node = Node(data)
 
-        if self.head is None:
+        if self.head is None: # empty linkedlist, just append the new_node to the linkedlist
             self.head = new_node
             return
 
@@ -28,40 +28,52 @@ class LinkedList:
 
     def prepend(self, data):
         new_node = Node(data)
-
         new_node.next = self.head
         self.head = new_node
 
     def insert_after_node(self, prev_node, data):
-
         if not prev_node:
             print("Previous node does not exist.")
-            return 
-
+            return
         new_node = Node(data)
-
         new_node.next = prev_node.next
         prev_node.next = new_node
 
     def delete_node(self, key):
-
         cur_node = self.head
-
-        if cur_node and cur_node.data == key:
+        if cur_node and cur_node.data == key:#delete the head node
             self.head = cur_node.next
             cur_node = None
             return
-
-        prev = None 
+        prev = None # keep track of the previous node
         while cur_node and cur_node.data != key:
             prev = cur_node
             cur_node = cur_node.next
-
-        if cur_node is None:
+        if cur_node is None:#nothing found in the linkedlist
             return 
-
         prev.next = cur_node.next
         cur_node = None
+    def delete_node_at_pos(self, pos):
+        if self.head:
+            cur_node = self.head
+
+            if pos == 0:
+                self.head = cur_node.next
+                cur_node = None
+                return
+
+            prev = None
+            count = 0
+            while cur_node and count != pos:
+                prev = cur_node 
+                cur_node = cur_node.next
+                count += 1
+
+            if cur_node is None:
+                return 
+
+            prev.next = cur_node.next
+            cur_node = None
 
 
 llist = LinkedList()
